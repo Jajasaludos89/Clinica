@@ -51,3 +51,50 @@ def procesarEdicionEmpleado(request):
     empleado.save()
     messages.success(request, "Empleado ACTUALIZADO exitosamente")
     return redirect('/empleados')
+
+#ave
+
+def inicioAves(request):
+    aves = AveDePresa.objects.all()
+    return render(request, "inicioAves.html", {'aves': aves})
+
+def nuevaAve(request):
+    return render(request, "nuevaAve.html")
+
+def guardarAve(request):
+    nombre = request.POST["nombre"]
+    especie = request.POST["especie"]
+    fecha_ingreso = request.POST["fecha_ingreso"]
+    observaciones = request.POST["observaciones"]
+
+    AveDePresa.objects.create(
+        nombre=nombre,
+        especie=especie,
+        fecha_ingreso=fecha_ingreso,
+        observaciones=observaciones
+    )
+
+    messages.success(request, "Ave GUARDADA exitosamente")
+    return redirect('/aves')
+
+def eliminarAve(request, id):
+    ave = AveDePresa.objects.get(id=id)
+    ave.delete()
+    messages.success(request, "Ave ELIMINADA exitosamente")
+    return redirect('/aves')
+
+def editarAve(request, id):
+    ave = AveDePresa.objects.get(id=id)
+    return render(request, "editarAve.html", {'ave': ave})
+
+def procesarEdicionAve(request):
+    id = request.POST["id"]
+    ave = AveDePresa.objects.get(id=id)
+    ave.nombre = request.POST["nombre"]
+    ave.especie = request.POST["especie"]
+    ave.fecha_ingreso = request.POST["fecha_ingreso"]
+    ave.observaciones = request.POST["observaciones"]
+    ave.save()
+    messages.success(request, "Ave ACTUALIZADA exitosamente")
+    return redirect('/aves')
+
