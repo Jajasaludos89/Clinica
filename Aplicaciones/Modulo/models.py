@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class Empleado(models.Model):
+    identificacion = models.CharField(max_length=20, unique=True)
+    nombre = models.CharField(max_length=100)
+    edad = models.IntegerField()
+    titulo = models.CharField(max_length=100)
+    especialidad = models.CharField(max_length=50, default='Fisioterapeuta Aviar')
+
+    def __str__(self):
+        return f"{self.nombre} ({self.titulo})"
