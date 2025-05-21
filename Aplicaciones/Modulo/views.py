@@ -98,3 +98,52 @@ def procesarEdicionAve(request):
     messages.success(request, "Ave ACTUALIZADA exitosamente")
     return redirect('/aves')
 
+#secion
+
+def inicioSesiones(request):
+    sesiones = SesionFisioterapia.objects.all()
+    return render(request, "inicioSesiones.html", {'sesiones': sesiones})
+
+def nuevaSesion(request):
+    empleados = Empleado.objects.all()
+    aves = AveDePresa.objects.all()
+    return render(request, "nuevaSesion.html", {'empleados': empleados, 'aves': aves})
+
+def guardarSesion(request):
+    fisioterapeuta_id = request.POST["fisioterapeuta"]
+    ave_id = request.POST["ave"]
+    fecha_sesion = request.POST["fecha_sesion"]
+    descripcion = request.POST["descripcion"]
+
+    SesionFisioterapia.objects.create(
+        fisioterapeuta_id=fisioterapeuta_id,
+        ave_id=ave_id,
+        fecha_sesion=fecha_sesion,
+        descripcion=descripcion
+    )
+
+    messages.success(request, "Sesión GUARDADA exitosamente")
+    return redirect('/sesiones')
+
+def eliminarSesion(request, id):
+    sesion = SesionFisioterapia.objects.get(id=id)
+    sesion.delete()
+    messages.success(request, "Sesión ELIMINADA exitosamente")
+    return redirect('/sesiones')
+
+def editarSesion(request, id):
+    sesion = SesionFisioterapia.objects.get(id=id)
+    empleados = Empleado.objects.all()
+    aves = AveDePresa.objects.all()
+    return render(request, "editarSesion.html", {'sesion': sesion, 'empleados': empleados, 'aves': aves})
+
+def procesarEdicionSesion(request):
+    id = request.POST["id"]
+    sesion = SesionFisioterapia.objects.get(id=id)
+    sesion.fisioterapeuta_id = request.POST["fisioterapeuta"]
+    sesion.ave_id = request.POST["ave"]
+    sesion.fecha_sesion = request.POST["fecha_sesion"]
+    sesion.descripcion = request.POST["descripcion"]
+    sesion.save()
+    messages.success(request, "Sesión ACTUALIZADA exitosamente")
+    return redirect('/sesiones')
