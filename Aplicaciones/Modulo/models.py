@@ -9,3 +9,12 @@ class Empleado(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.titulo})"
+    
+class AveDePresa(models.Model):
+    nombre = models.CharField(max_length=100)
+    especie = models.CharField(max_length=50)
+    fecha_ingreso = models.DateField()
+    observaciones = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.nombre} ({self.especie})"
