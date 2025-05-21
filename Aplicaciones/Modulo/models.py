@@ -18,3 +18,13 @@ class AveDePresa(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.especie})"
+    
+
+class SesionFisioterapia(models.Model):
+    fisioterapeuta = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    ave = models.ForeignKey(AveDePresa, on_delete=models.CASCADE)
+    fecha_sesion = models.DateField()
+    descripcion = models.TextField()
+
+    def __str__(self):
+        return f"Sesión {self.fecha_sesion} - {self.ave.nombre} con {self.fisioterapeuta.nombre}"
