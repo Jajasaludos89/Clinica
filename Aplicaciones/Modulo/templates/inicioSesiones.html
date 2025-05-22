@@ -19,7 +19,7 @@
             <th>FISIOTERAPEUTA</th>            
             <th>AVE</th>
             <th>FECHA</th>
-            <th>OBSERVACIONES</th>
+            <th>DESCRIPCIÓN</th>
             <th>ACCIONES</th>
         </tr>
     </thead>
@@ -29,8 +29,8 @@
                 <td>{{ sesion.id }}</td>
                 <td>{{ sesion.fisioterapeuta.nombre }}</td>
                 <td>{{ sesion.ave.nombre }}</td>
-                <td>{{ sesion.fecha }}</td>
-                <td>{{ sesion.observaciones }}</td>
+                <td>{{ sesion.fecha_sesion }}</td>
+                <td>{{ sesion.descripcion }}</td>
                 <td>
                     <a href="editarSesion/{{ sesion.id }}" class="btn btn-outline-warning">
                         <i class="fa fa-pen"></i>
