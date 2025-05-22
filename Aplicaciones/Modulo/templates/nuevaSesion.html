@@ -1,0 +1,39 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Nueva Sesión de Fisioterapia</h1>
+        <form action="/guardarSesion" method="post">
+            {% csrf_token %}
+
+            <label for="fisioterapeuta">Fisioterapeuta:</label><br>
+            <select class="form-control" name="fisioterapeuta" id="fisioterapeuta">
+                {% for emp in empleados %}
+                    <option value="{{ emp.id }}">{{ emp.nombre }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="ave">Ave de Presa:</label><br>
+            <select class="form-control" name="ave" id="ave">
+                {% for ave in aves %}
+                    <option value="{{ ave.id }}">{{ ave.nombre }} ({{ ave.especie }})</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="fecha_sesion">Fecha de Sesión:</label><br>
+            <input class="form-control" type="date" name="fecha_sesion" id="fecha_sesion"><br><br>
+
+            <label for="descripcion">Descripción:</label><br>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="5"></textarea><br><br>
+
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="/sesiones">Cancelar</a>
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
