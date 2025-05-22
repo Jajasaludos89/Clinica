@@ -1,0 +1,37 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Editar Ave de Presa</h1>
+        <form action="/procesarEdicionAve" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ ave.id }}">
+
+            <label for="nombre">Nombre:</label><br>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ ave.nombre }}" required> <br> <br>
+
+            <label for="especie">Especie:</label><br>
+            <input class="form-control" type="text" name="especie" id="especie" value="{{ ave.especie }}" required> <br> <br>
+
+            <label for="fecha_ingreso">Fecha de Ingreso:</label><br>
+            <input class="form-control" type="date" name="fecha_ingreso" id="fecha_ingreso" value="{{ ave.fecha_ingreso|date:'Y-m-d' }}" required> <br> <br>
+
+            <label for="observaciones">Observaciones:</label><br>
+            <textarea class="form-control" name="observaciones" id="observaciones" rows="5">{{ ave.observaciones }}</textarea> <br> <br>
+
+            <button class="btn btn-warning" type="submit">
+                <i class="fa fa-pen"></i> Editar
+            </button>
+
+            <a class="btn btn-outline-danger" href="/aves">
+                <i class="fa fa-times"></i> Cancelar
+            </a>
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
