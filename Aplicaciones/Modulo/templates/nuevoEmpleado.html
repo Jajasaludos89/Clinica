@@ -7,21 +7,22 @@
         <h1>Nuevo Empleado</h1>
         <form action="guardarEmpleado" method="post">
             {% csrf_token %}
+            
+            <label for="">Identificación:</label><br>
+            <input class="form-control" type="text" name="identificacion" id="identificacion"> <br><br>
+            
             <label for="">Nombre:</label><br>
-            <input class="form-control" type="text" name="nombre" id="nombre"> <br> <br>
-
+            <input class="form-control" type="text" name="nombre" id="nombre"> <br><br>
+            
             <label for="">Edad:</label><br>
-            <input class="form-control" type="number" name="edad" id="edad"> <br> <br>
-
-            <label for="">Género:</label><br>
-            <input class="form-control" type="text" name="genero" id="genero"> <br> <br>
-
-            <label for="">Dirección:</label> <br>
-            <input class="form-control" type="text" name="direccion" id="direccion"> <br> <br>
-
-            <label for="">Teléfono:</label><br>
-            <input class="form-control" type="text" name="telefono" id="telefono"> <br> <br>
-
+            <input class="form-control" type="number" name="edad" id="edad"> <br><br>
+            
+            <label for="">Título:</label><br>
+            <input class="form-control" type="text" name="titulo" id="titulo"> <br><br>
+            
+            <label for="">Especialidad:</label><br>
+            <input class="form-control" type="text" name="especialidad" id="especialidad" value="Fisioterapeuta Aviar"> <br><br>
+            
             <button class="btn btn-success" type="submit">Guardar</button>
             <a class="btn btn-outline-danger" href="/empleados">Cancelar</a>
         </form>
