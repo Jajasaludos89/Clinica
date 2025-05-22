@@ -1,0 +1,48 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Editar Sesión de Fisioterapia</h1>
+        <form action="/procesarEdicionSesion" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ sesion.id }}">
+
+            <label for="fisioterapeuta">Fisioterapeuta:</label><br>
+            <select class="form-control" name="fisioterapeuta" id="fisioterapeuta">
+                {% for emp in empleados %}
+                    <option value="{{ emp.id }}" {% if emp.id == sesion.fisioterapeuta.id %}selected{% endif %}>
+                        {{ emp.nombre }}
+                    </option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="ave">Ave de Presa:</label><br>
+            <select class="form-control" name="ave" id="ave">
+                {% for ave in aves %}
+                    <option value="{{ ave.id }}" {% if ave.id == sesion.ave.id %}selected{% endif %}>
+                        {{ ave.nombre }} ({{ ave.especie }})
+                    </option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="fecha_sesion">Fecha de Sesión:</label><br>
+            <input class="form-control" type="date" name="fecha_sesion" id="fecha_sesion" value="{{ sesion.fecha_sesion|date:'Y-m-d' }}"> <br><br>
+
+            <label for="descripcion">Descripción:</label><br>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="5">{{ sesion.descripcion }}</textarea> <br><br>
+
+            <button class="btn btn-warning" type="submit">
+                <i class="fa fa-pen"></i> Editar
+            </button>
+            <a class="btn btn-outline-danger" href="/sesiones">
+                <i class="fa fa-times"></i> Cancelar
+            </a>
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
