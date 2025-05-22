@@ -38,7 +38,8 @@ def eliminarEmpleado(request, id):
 
 def editarEmpleado(request, id):
     empleado = Empleado.objects.get(id=id)
-    return render(request, "editarEmpleado.html", {'empleado': empleado})
+    return render(request, "editarEmpleado.html", {'empleadoEditar': empleado})
+
 
 def procesarEdicionEmpleado(request):
     id = request.POST["id"]

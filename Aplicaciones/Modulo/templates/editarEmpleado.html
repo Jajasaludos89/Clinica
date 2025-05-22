@@ -1,0 +1,39 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Editar Empleado</h1>
+        <form action="/procesarEdicionEmpleado" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ empleadoEditar.id }}">
+            
+            <label for="">Identificación:</label><br>
+            <input class="form-control" type="text" name="identificacion" id="identificacion" value="{{ empleadoEditar.identificacion }}"> <br><br>
+            
+            <label for="">Nombre:</label><br>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ empleadoEditar.nombre }}"> <br><br>
+            
+            <label for="">Edad:</label><br>
+            <input class="form-control" type="number" name="edad" id="edad" value="{{ empleadoEditar.edad }}"> <br><br>
+            
+            <label for="">Título:</label><br>
+            <input class="form-control" type="text" name="titulo" id="titulo" value="{{ empleadoEditar.titulo }}"> <br><br>
+            
+            <label for="">Especialidad:</label><br>
+            <input class="form-control" type="text" name="especialidad" id="especialidad" value="{{ empleadoEditar.especialidad }}"> <br><br>
+
+            <button class="btn btn-warning" type="submit">
+                <i class="fa fa-pen"></i> Editar
+            </button>
+            <a class="btn btn-outline-danger" href="/empleados">
+                <i class="fa fa-times"></i> Cancelar
+            </a>
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
